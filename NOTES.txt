@@ -1,0 +1,11 @@
+Build notes
+-------------
+In order to build this plugin, you have to install the 'portlets' plugin first.
+(i.e. grails install-plugin portlets)
+
+To run in debug mode
+---------------------
+grails liferay-update -debug
+grails war -debug
+
+
