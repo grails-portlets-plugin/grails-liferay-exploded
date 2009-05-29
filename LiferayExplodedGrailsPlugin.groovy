@@ -1,14 +1,12 @@
 class LiferayExplodedGrailsPlugin {
 
-    def version = "0.6"
+    def version = "0.7"
 
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = "1.1 > *"
 
     // the other plugins this plugin depends on
-    // due to GRAILS-4586, portlets-liferay cannot be resolved as a dependency.
-    //def dependsOn = ['portlets':"0.2 > *", 'portlets-liferay':"0.1 > *"]
-    def dependsOn = ['portlets':"0.2 > *"]
+    def dependsOn = [portlets:"0.3 > *", portletsLiferay:"0.1 > *"]
 
     // This plugin only is used in 'development' environment
     def environments = ['dev', 'development']

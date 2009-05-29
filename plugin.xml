@@ -1,4 +1,4 @@
-<plugin name='liferay-exploded' version='0.6' grailsVersion='1.1 &gt; *'>
+<plugin name='liferay-exploded' version='0.7' grailsVersion='1.1 &gt; *'>
   <author>Brian McGinnis</author>
   <authorEmail>brian_mcginnis@diva-america.com</authorEmail>
   <title>Plugin that creates fast, temporary deployment artifacts for Liferay.</title>
@@ -10,8 +10,10 @@ This plugin generates Liferay-specific artifacts for exploded war deployment.
     <resource>BootStrap</resource>
     <resource>BuildConfig</resource>
     <resource>Config</resource>
+    <resource>UrlMappings</resource>
   </resources>
   <dependencies>
-    <plugin name='portlets' version='0.2 &gt; *' />
+    <plugin name='portlets' version='0.3 &gt; *' />
+    <plugin name='portletsLiferay' version='0.1 &gt; *' />
   </dependencies>
 </plugin>
