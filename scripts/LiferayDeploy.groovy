@@ -15,45 +15,6 @@ def webInfDir = "${explodedDir}/WEB-INF"
 // This is where local Lifray is installed
 String liferayHome = ant.project.properties."environment.LIFERAY_HOME"
 
-
-
-
-/**
- * Finds the given plugin's configration file by looking for it in user's work directory.
- */
-private File findPluginConfigFile(String pluginName, String pluginConfigFile) {
-
-    String pluginDirectoryPattern = "file:${pluginsHome}/${pluginName}-*/${pluginConfigFile}"
-
-    PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver()
-
-    try {
-        Resource[] matches = resolver.getResources(pluginDirectoryPattern)
-        if (matches) {
-            Resource resource = matches[0]
-            return (resource?.file)
-        }
-
-    } catch (IllegalArgumentException e) { /* eatme */ }
-
-    return null
-}
-
-/**
- * Finds the given plugin's installed directory.
- */
-private String getPluginDir(String pluginName, String pluginConfigFile) {
-
-    File f = findPluginConfigFile(pluginName, pluginConfigFile)
-    if (f == null) {
-        // Bomb out if plugin wasn't installed correctly.
-        println "Fatal Error! Plugin file ${pluginConfigFile} not found. Make sure plugin installed correctly."
-        System.exit(-1)
-    }
-
-    return (f.toString() - "/${pluginConfigFile}")
-}
-
 /**
  * Creates a 'context.xml' file for the portlet in /META-INF directory.
  */
@@ -122,7 +83,7 @@ def generateLiferayArtifacts(String metaInfDir, String webInfDir) {
     final String pluginName = 'liferay'           // Name of our plugin.
     final String pluginConfigFile = 'plugin.xml'   // Our plugin's deployed config file.
 
-    final String pluginDir = getPluginDir(pluginName, pluginConfigFile)
+    final String pluginDir = "${liferayExplodedPluginDir}"
 
     createLiferayContextFile(metaInfDir)
     copyTagLibraryFiles(pluginDir, webInfDir)
